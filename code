@@ -10,13 +10,13 @@ if [[ $(/usr/bin/id -u) -ne 0 ]]; then
     exit
 fi
 #Have to install yum-utils 
-yum -y install yum-utils   
+dnf -y install yum-utils   
 
 #To find more than 7 days and beyond 50m or 30 days files from the path *.log/var
 find /var -name "*.log" \( \( -size +50M -mtime +7 \) -o -mtime +30 \) -exec truncate {} --size 0 \; 
 
 #clean the cache
-yum clean all
+dnf clean all
 
 #check the alone package
 package-cleanup --quiet --leaves  --exclude-bin
