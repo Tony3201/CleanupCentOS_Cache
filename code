@@ -5,10 +5,12 @@
 # Created Time: June 08 2019		
 #########################################################################
 #!/bin/bash
-if [[ $(/usr/bin/id -u) -ne 0 ]]; then
-    echo "!!!!No Working !! Must be use root to run this script." |lolcat 
-    exit
+if [ $USER != "root" ] # only runs if logged in as root
+then
+ echo "You must be logged in as root." >&2
+ exit 1
 fi
+
 #Have to install yum-utils 
 dnf -y install yum-utils   
 
